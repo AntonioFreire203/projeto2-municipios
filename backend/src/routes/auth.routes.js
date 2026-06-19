@@ -39,8 +39,9 @@ authRouter.post(
       }
 
       const token = signToken(user)
-      logSecurityEvent('LOGIN_SUCCESS', { ...req, user }, `username=${username}`)
-      return res.json({ token, user: { id: user.id, username: user.username } })
+      req.user = { id: user.id, username: user.username }
+      logSecurityEvent('LOGIN_SUCCESS', req, `username=${username}`)
+      return res.json({ token, user: req.user })
     } catch (err) {
       logSecurityEvent('LOGIN_ERROR', req, err.message)
       return res.status(500).json({ erro: 'Erro interno ao processar o login.' })
