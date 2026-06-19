@@ -1,11 +1,15 @@
 // Logger centralizado (winston) para registro/monitoramento de seguranca.
 // Registra falhas de autenticacao, buscas e insercoes.
 import winston from 'winston'
+import { mkdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const logDir = join(__dirname, '..', '..', 'logs')
+
+// Garante que a pasta de logs exista (ela e ignorada pelo git).
+mkdirSync(logDir, { recursive: true })
 
 export const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || 'info',
