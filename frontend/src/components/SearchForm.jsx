@@ -12,16 +12,16 @@ export function SearchForm() {
 
   return (
     <form className="search-form" onSubmit={handleSubmit(buscar)} noValidate>
-      <h2>Buscar municipio</h2>
+      <h2>Buscar município</h2>
       <div className="form-group">
         <label htmlFor="nome">Nome *</label>
         <input
           id="nome"
           type="text"
-          placeholder="Digite o nome do municipio"
+          placeholder="Digite o nome do município"
           className={errors.nome ? 'input-error' : ''}
           {...register('nome', {
-            required: 'O nome do municipio e obrigatorio.',
+            required: 'O nome do município é obrigatório.',
             minLength: { value: 2, message: 'Digite ao menos 2 caracteres.' },
           })}
         />
@@ -47,11 +47,11 @@ export function SearchForm() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="regiao">Regiao *</label>
+          <label htmlFor="regiao">Região *</label>
           <select
             id="regiao"
             className={errors.regiao ? 'input-error' : ''}
-            {...register('regiao', { required: 'Selecione a regiao.' })}
+            {...register('regiao', { required: 'Selecione a região.' })}
           >
             <option value="">Selecione</option>
             {REGIOES.map((r) => (

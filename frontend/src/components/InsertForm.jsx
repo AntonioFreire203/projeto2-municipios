@@ -18,7 +18,7 @@ export function InsertForm() {
 
   return (
     <form className="search-form" onSubmit={handleSubmit(onSubmit)} noValidate>
-      <h2>Cadastrar municipio</h2>
+      <h2>Cadastrar município</h2>
 
       <div className="form-group">
         <label htmlFor="ins-nome">Nome *</label>
@@ -27,7 +27,7 @@ export function InsertForm() {
           type="text"
           className={errors.nome ? 'input-error' : ''}
           {...register('nome', {
-            required: 'O nome e obrigatorio.',
+            required: 'O nome é obrigatório.',
             minLength: { value: 2, message: 'Digite ao menos 2 caracteres.' },
           })}
         />
@@ -53,11 +53,11 @@ export function InsertForm() {
         </div>
 
         <div className="form-group">
-          <label htmlFor="ins-regiao">Regiao *</label>
+          <label htmlFor="ins-regiao">Região *</label>
           <select
             id="ins-regiao"
             className={errors.regiao ? 'input-error' : ''}
-            {...register('regiao', { required: 'Selecione a regiao.' })}
+            {...register('regiao', { required: 'Selecione a região.' })}
           >
             <option value="">Selecione</option>
             {REGIOES.map((r) => (
@@ -71,15 +71,15 @@ export function InsertForm() {
       </div>
 
       <div className="form-group">
-        <label htmlFor="ins-codigo">Codigo IBGE (opcional)</label>
+        <label htmlFor="ins-codigo">Código IBGE (opcional)</label>
         <input
           id="ins-codigo"
           type="text"
           maxLength={7}
-          placeholder="7 digitos"
+          placeholder="7 dígitos"
           className={errors.codigoIbge ? 'input-error' : ''}
           {...register('codigoIbge', {
-            pattern: { value: /^\d{7}$/, message: 'Deve ter 7 digitos numericos.' },
+            pattern: { value: /^\d{7}$/, message: 'Deve ter 7 dígitos numéricos.' },
           })}
         />
         {errors.codigoIbge && <span className="field-error">{errors.codigoIbge.message}</span>}

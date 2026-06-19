@@ -12,17 +12,17 @@ export function Login() {
   return (
     <div className="login-wrapper">
       <form className="login-card" onSubmit={handleSubmit(login)} noValidate>
-        <h1>Brasil Municipios</h1>
-        <p className="login-sub">Faca login para acessar o sistema</p>
+        <h1>Brasil Municípios</h1>
+        <p className="login-sub">Faça login para acessar o sistema</p>
 
         <div className="form-group">
-          <label htmlFor="username">Usuario *</label>
+          <label htmlFor="username">Usuário *</label>
           <input
             id="username"
             type="text"
             autoComplete="username"
             className={errors.username ? 'input-error' : ''}
-            {...register('username', { required: 'Informe o usuario.' })}
+            {...register('username', { required: 'Informe o usuário.' })}
           />
           {errors.username && <span className="field-error">{errors.username.message}</span>}
         </div>

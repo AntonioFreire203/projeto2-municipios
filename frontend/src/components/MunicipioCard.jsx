@@ -6,7 +6,7 @@ export function MunicipioCard({ municipio }) {
         <span className="badge">{municipio.uf}</span>
         <span>{municipio.regiao}</span>
       </div>
-      <p className="card-micro">Codigo IBGE: {municipio.codigo_ibge || '—'}</p>
+      <p className="card-micro">Código IBGE: {municipio.codigo_ibge || '—'}</p>
     </div>
   )
 }

@@ -15,7 +15,7 @@ function Dashboard() {
     <div className="app">
       <header className="app-header">
         <div>
-          <h1>Brasil Municipios</h1>
+          <h1>Brasil Municípios</h1>
           <p>Bem-vindo, {state.user?.username}</p>
         </div>
         <button className="btn-logout" onClick={logout}>

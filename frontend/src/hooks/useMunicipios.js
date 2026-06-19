@@ -18,7 +18,7 @@ export function useMunicipios() {
       const data = await apiFetch(`/municipios?${params.toString()}`, { token: auth.token })
 
       if (data.resultados.length === 0) {
-        dispatch({ type: 'FETCH_ERROR', payload: 'Nenhum municipio encontrado.' })
+        dispatch({ type: 'FETCH_ERROR', payload: 'Nenhum município encontrado.' })
       } else {
         dispatch({ type: 'FETCH_SUCCESS', payload: data.resultados })
       }
