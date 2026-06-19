@@ -37,7 +37,7 @@ projeto2-municipios/
 ## Otimização
 
 - **Compressão de respostas** do servidor (`compression`).
-- **Compressão de arquivos estáticos**: com `SERVE_FRONTEND=true`, o back-end serve o build do front (`frontend/dist`) com os assets comprimidos (gzip/brotli) pelo mesmo middleware.
+- **Compressão de arquivos estáticos**: com `SERVE_FRONTEND=true`, o back-end serve o build do front (`frontend/dist`) e o middleware `compression` comprime os assets nas respostas HTTP.
 - **Cache** de buscas no Redis (TTL configurável), invalidado nas inserções.
 - **Pool de conexões** no PostgreSQL.
 

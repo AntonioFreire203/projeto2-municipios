@@ -79,14 +79,16 @@ function iniciarServidor() {
   const keyPath = process.env.SSL_KEY_PATH || join(__dirname, '..', 'certs', 'key.pem')
   const certPath = process.env.SSL_CERT_PATH || join(__dirname, '..', 'certs', 'cert.pem')
 
-  // HTTPS real quando habilitado e os certificados existem; senao, HTTP.
+  // HTTPS real quando habilitado. Se foi solicitado, certificado ausente e erro de configuracao.
   if (useHttps && existsSync(keyPath) && existsSync(certPath)) {
     const credenciais = { key: readFileSync(keyPath), cert: readFileSync(certPath) }
     https
       .createServer(credenciais, app)
       .listen(PORT, () => logger.info(`Servidor HTTPS ouvindo na porta ${PORT}.`))
   } else {
-    if (useHttps) logger.warn('USE_HTTPS=true mas certificados nao encontrados. Use "npm run cert". Subindo em HTTP.')
+    if (useHttps) {
+      throw new Error('USE_HTTPS=true mas certificados nao encontrados. Execute "npm run cert" ou ajuste SSL_KEY_PATH/SSL_CERT_PATH.')
+    }
     app.listen(PORT, () => logger.info(`Servidor HTTP ouvindo na porta ${PORT}.`))
   }
 }
