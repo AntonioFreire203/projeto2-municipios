@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
-    "db:setup": "node src/config/setup.js"
+    "db:setup": "node src/config/setup.js",
+    "cert": "mkdir -p certs && openssl req -x509 -newkey rsa:2048 -nodes -keyout certs/key.pem -out certs/cert.pem -days 365 -subj \"/CN=localhost\""
   },
   "dependencies": {
     "bcrypt": "^5.1.1",

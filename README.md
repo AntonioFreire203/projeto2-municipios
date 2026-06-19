@@ -29,16 +29,25 @@ projeto2-municipios/
 
 ## Segurança implementada
 
-- **Criptografia**: senhas com **bcrypt**; suporte a HTTPS em produção.
+- **Criptografia**: senhas com **bcrypt** e **HTTPS** real (TLS) ativável via `USE_HTTPS=true` (gere o certificado com `npm run cert`).
 - **Injeção / XSS**: queries **parametrizadas** (anti SQL Injection), sanitização de entrada (`express-validator`), headers seguros (`helmet`).
-- **Autenticação**: **JWT** com expiração, **rate limiting** no login (anti-brute force) e **invalidação de token** no logout (blacklist no Redis).
+- **Autenticação**: **JWT** com expiração, **rate limiting** no login (anti-brute force), **invalidação de token** no logout (blacklist no Redis) e validação da sessão no carregamento (`GET /api/auth/me`).
 - **Logs / monitoramento**: registro de falhas de login, buscas e inserções (`winston` → `backend/logs/`).
 
 ## Otimização
 
-- **Compressão** de respostas do servidor (`compression`) e build minificado/gzip do front (Vite).
-- **Cache** de buscas no Redis (TTL configurável).
+- **Compressão de respostas** do servidor (`compression`).
+- **Compressão de arquivos estáticos**: com `SERVE_FRONTEND=true`, o back-end serve o build do front (`frontend/dist`) com os assets comprimidos (gzip/brotli) pelo mesmo middleware.
+- **Cache** de buscas no Redis (TTL configurável), invalidado nas inserções.
 - **Pool de conexões** no PostgreSQL.
+
+### Modo produção (HTTPS + front servido pelo back-end)
+
+```bash
+cd frontend && npm run build      # gera frontend/dist
+cd ../backend && npm run cert     # gera certificado self-signed (certs/)
+USE_HTTPS=true SERVE_FRONTEND=true npm start   # https://localhost:3001
+```
 
 ## Como executar (modelo híbrido)
 
