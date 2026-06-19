@@ -1,10 +1,10 @@
 :root {
-  --azul: #1351b4;
-  --azul-escuro: #0c326f;
+  --primaria: #168821;
+  --primaria-escura: #0c5e16;
   --verde: #168821;
   --vermelho: #d04012;
-  --cinza-bg: #f5f6fa;
-  --cinza-borda: #d7d9e0;
+  --cinza-bg: #f0f3ef;
+  --cinza-borda: #d2d8cf;
   --texto: #1b1b1b;
 }
 
@@ -35,11 +35,13 @@ body {
   max-width: 380px;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--cinza-borda);
+  border-top: 5px solid var(--primaria);
+  box-shadow: 0 10px 35px rgba(12, 94, 22, 0.12);
 }
 
 .login-card h1 {
-  color: var(--azul);
+  color: var(--primaria);
   font-size: 1.5rem;
 }
 
@@ -60,7 +62,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: var(--azul);
+  background: var(--primaria);
   color: #fff;
   padding: 1.25rem 1.5rem;
   border-radius: 12px;
@@ -99,7 +101,7 @@ body {
 .search-form h2 {
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  color: var(--azul-escuro);
+  color: var(--primaria-escura);
 }
 
 .form-group {
@@ -134,7 +136,7 @@ select {
 input:focus,
 select:focus {
   outline: none;
-  border-color: var(--azul);
+  border-color: var(--primaria);
 }
 
 .input-error {
@@ -151,7 +153,7 @@ select:focus {
 .btn-buscar {
   width: 100%;
   padding: 0.7rem;
-  background: var(--azul);
+  background: var(--primaria);
   color: #fff;
   border: none;
   border-radius: 8px;
@@ -161,7 +163,7 @@ select:focus {
 }
 
 .btn-buscar:hover:not(:disabled) {
-  background: var(--azul-escuro);
+  background: var(--primaria-escura);
 }
 
 .btn-buscar:disabled {
@@ -226,7 +228,7 @@ select:focus {
   padding: 1rem;
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-  border-left: 4px solid var(--azul);
+  border-left: 4px solid var(--primaria);
 }
 
 .card-nome {
@@ -243,7 +245,7 @@ select:focus {
 }
 
 .badge {
-  background: var(--azul);
+  background: var(--primaria);
   color: #fff;
   padding: 0.1rem 0.5rem;
   border-radius: 4px;
@@ -270,7 +272,7 @@ select:focus {
   width: 22px;
   height: 22px;
   border: 3px solid var(--cinza-borda);
-  border-top-color: var(--azul);
+  border-top-color: var(--primaria);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
 }
