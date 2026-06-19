@@ -28,6 +28,20 @@ app.use(
 app.use(express.json({ limit: '10kb' })) // limita payload (mitiga abuso)
 
 // --- Rotas RESTful ---
+// Raiz: porta de entrada amigavel da API.
+app.get('/', (req, res) =>
+  res.json({
+    api: 'Brasil Municipios',
+    status: 'online',
+    rotas: [
+      'POST /api/auth/login',
+      'POST /api/auth/logout',
+      'GET  /api/auth/me',
+      'GET  /api/municipios?nome=&uf=&regiao=',
+      'POST /api/municipios',
+    ],
+  })
+)
 app.get('/api/health', (req, res) => res.json({ status: 'ok' }))
 app.use('/api/auth', authRouter)
 app.use('/api/municipios', municipiosRouter)
