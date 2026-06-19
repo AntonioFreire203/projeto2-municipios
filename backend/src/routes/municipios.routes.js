@@ -17,9 +17,12 @@ municipiosRouter.use(authenticate)
 // GET /api/municipios?nome=&uf=&regiao=  -> BUSCA (com cache no Redis)
 municipiosRouter.get(
   '/',
-  q('nome').optional().trim().escape(),
-  q('uf').optional().trim().toUpperCase().isLength({ min: 2, max: 2 }).withMessage('UF invalida.'),
-  q('regiao').optional().trim().isIn(REGIOES).withMessage('Regiao invalida.'),
+  q('nome').trim().notEmpty().withMessage('O nome do municipio e obrigatorio.').bail()
+    .isLength({ min: 2 }).withMessage('Digite ao menos 2 caracteres.').escape(),
+  q('uf').trim().notEmpty().withMessage('O estado (UF) e obrigatorio.').bail()
+    .toUpperCase().isLength({ min: 2, max: 2 }).withMessage('UF invalida.'),
+  q('regiao').trim().notEmpty().withMessage('A regiao e obrigatoria.').bail()
+    .isIn(REGIOES).withMessage('Regiao invalida.'),
   async (req, res) => {
     const errors = validationResult(req)
     if (!errors.isEmpty()) {

@@ -30,27 +30,37 @@ export function SearchForm() {
 
       <div className="form-row">
         <div className="form-group">
-          <label htmlFor="uf">Estado (UF)</label>
-          <select id="uf" {...register('uf')}>
-            <option value="">Todos os estados</option>
+          <label htmlFor="uf">Estado (UF) *</label>
+          <select
+            id="uf"
+            className={errors.uf ? 'input-error' : ''}
+            {...register('uf', { required: 'Selecione o estado.' })}
+          >
+            <option value="">Selecione</option>
             {ESTADOS.map((e) => (
               <option key={e.sigla} value={e.sigla}>
                 {e.sigla} — {e.nome}
               </option>
             ))}
           </select>
+          {errors.uf && <span className="field-error">{errors.uf.message}</span>}
         </div>
 
         <div className="form-group">
-          <label htmlFor="regiao">Regiao</label>
-          <select id="regiao" {...register('regiao')}>
-            <option value="">Todas as regioes</option>
+          <label htmlFor="regiao">Regiao *</label>
+          <select
+            id="regiao"
+            className={errors.regiao ? 'input-error' : ''}
+            {...register('regiao', { required: 'Selecione a regiao.' })}
+          >
+            <option value="">Selecione</option>
             {REGIOES.map((r) => (
               <option key={r} value={r}>
                 {r}
               </option>
             ))}
           </select>
+          {errors.regiao && <span className="field-error">{errors.regiao.message}</span>}
         </div>
       </div>
 
