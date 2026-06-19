@@ -75,6 +75,11 @@ municipiosRouter.post(
       }
 
       const novo = await Municipio.create({ nome, uf, regiao, codigoIbge }, req.user.id)
+
+      // Invalida o cache de buscas: novos dados tornam resultados anteriores obsoletos.
+      const chaves = await redis.keys('busca:*')
+      if (chaves.length) await redis.del(chaves)
+
       logSecurityEvent('INSERT', req, `municipio=${novo.nome}/${novo.uf} id=${novo.id}`)
       return res.status(201).json({ mensagem: 'Municipio cadastrado com sucesso.', municipio: novo })
     } catch (err) {
