@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useMunicipios } from '../hooks/useMunicipios'
-
-const REGIOES = ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']
+import { ESTADOS, REGIOES } from '../constants'
 
 export function InsertForm() {
   const { state, inserir } = useMunicipios()
@@ -38,17 +37,18 @@ export function InsertForm() {
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="ins-uf">UF *</label>
-          <input
+          <select
             id="ins-uf"
-            type="text"
-            maxLength={2}
-            style={{ textTransform: 'uppercase' }}
             className={errors.uf ? 'input-error' : ''}
-            {...register('uf', {
-              required: 'Informe a UF.',
-              pattern: { value: /^[A-Za-z]{2}$/, message: 'UF deve ter 2 letras.' },
-            })}
-          />
+            {...register('uf', { required: 'Selecione a UF.' })}
+          >
+            <option value="">Selecione</option>
+            {ESTADOS.map((e) => (
+              <option key={e.sigla} value={e.sigla}>
+                {e.sigla} — {e.nome}
+              </option>
+            ))}
+          </select>
           {errors.uf && <span className="field-error">{errors.uf.message}</span>}
         </div>
 

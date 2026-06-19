@@ -1,6 +1,9 @@
 -- Esquema do banco de dados (Projeto 2 - Programacao Web Fullstack)
 -- Executado automaticamente pelo container do PostgreSQL na primeira subida.
 
+-- Permite busca ignorando acentos (ex.: "Maringá" encontra "Maringa").
+CREATE EXTENSION IF NOT EXISTS unaccent;
+
 CREATE TABLE IF NOT EXISTS users (
   id            SERIAL PRIMARY KEY,
   username      VARCHAR(60) UNIQUE NOT NULL,

@@ -9,7 +9,8 @@ export class Municipio {
 
     if (nome) {
       params.push(`%${nome}%`)
-      conditions.push(`nome ILIKE $${params.length}`)
+      // unaccent + ILIKE -> busca ignora acentos e maiusculas/minusculas.
+      conditions.push(`unaccent(nome) ILIKE unaccent($${params.length})`)
     }
     if (uf) {
       params.push(uf)

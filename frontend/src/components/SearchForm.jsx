@@ -1,7 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useMunicipios } from '../hooks/useMunicipios'
-
-const REGIOES = ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']
+import { ESTADOS, REGIOES } from '../constants'
 
 export function SearchForm() {
   const { state, buscar } = useMunicipios()
@@ -32,14 +31,14 @@ export function SearchForm() {
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="uf">Estado (UF)</label>
-          <input
-            id="uf"
-            type="text"
-            maxLength={2}
-            placeholder="Ex: PR"
-            style={{ textTransform: 'uppercase' }}
-            {...register('uf')}
-          />
+          <select id="uf" {...register('uf')}>
+            <option value="">Todos os estados</option>
+            {ESTADOS.map((e) => (
+              <option key={e.sigla} value={e.sigla}>
+                {e.sigla} — {e.nome}
+              </option>
+            ))}
+          </select>
         </div>
 
         <div className="form-group">
