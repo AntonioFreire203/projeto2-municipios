@@ -39,7 +39,20 @@ function Dashboard() {
 }
 
 function Roteador() {
-  const { isAuthenticated } = useAuth()
+  const { state, isAuthenticated } = useAuth()
+
+  // Enquanto confirma a sessao no servidor, evita exibir o dashboard indevidamente.
+  if (state.checking) {
+    return (
+      <div className="login-wrapper">
+        <div className="spinner-wrapper">
+          <div className="spinner" />
+          <span>Verificando sessão...</span>
+        </div>
+      </div>
+    )
+  }
+
   return isAuthenticated ? <Dashboard /> : <Login />
 }
 
